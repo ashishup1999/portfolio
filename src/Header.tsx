@@ -4,6 +4,31 @@ import github from "./assets/github.svg";
 import leetcode from "./assets/leetcode.svg";
 import { RESUME_LINK, SOCIAL_LINKS } from "./Constants";
 
+export const MobileHeader = () => {
+  return (
+    <div className="glass-dark-pill header-mobile">
+      <p id="logo-title">Ashish Upadhyay</p>
+      <div className="social">
+        <img
+          src={linkedin}
+          alt=""
+          onClick={() => window.open(SOCIAL_LINKS.linkedin, "_blank")}
+        />
+        <img
+          src={github}
+          alt=""
+          onClick={() => window.open(SOCIAL_LINKS.github, "_blank")}
+        />
+        <img
+          src={leetcode}
+          alt=""
+          onClick={() => window.open(SOCIAL_LINKS.leetcode, "_blank")}
+        />
+      </div>
+    </div>
+  );
+};
+
 const Header = () => {
   const onCLickLink = (cls: string) => {
     const ele = document.querySelector(`.${cls}`);

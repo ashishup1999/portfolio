@@ -17,12 +17,14 @@ const NavLink = ({
     if (link) window.open(link, "_blank");
   };
   return (
-    <div>
-      <a href="#" onClick={onClickLink}>
-        {name}
-      </a>
+    <>
+      <div>
+        <a href="#" onClick={onClickLink}>
+          {name}
+        </a>
+      </div>
       {isDivided && <div className="divider"></div>}
-    </div>
+    </>
   );
 };
 

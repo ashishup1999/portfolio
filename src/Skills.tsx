@@ -102,8 +102,8 @@ const Skills = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            width: 600,
-            height: 600,
+            width: "min(600px, 100%)",
+            height: "min(600px, 100%)",
             backgroundImage: `url(${mandala})`,
             backgroundPosition: "center",
             backgroundSize: "contain", // Adjust as needed
@@ -112,18 +112,18 @@ const Skills = () => {
         />
         <SkillBox
           skills={SKILLS_LIST.map((obj) => obj.url).splice(0, 8)}
-          len={Math.min(650, window.innerWidth * 0.95)}
-        />
-        <SkillBox
-          skills={SKILLS_LIST.map((obj) => obj.url).splice(8, 8)}
-          len={Math.min(300, window.innerWidth * 0.95)}
-          initDeg={22.5}
-          isSpinCW={false}
+          len={Math.min(650, window.innerWidth * 0.75)}
         />
         <SkillBox
           skills={SKILLS_LIST.map((obj) => obj.url).splice(16, 8)}
-          len={Math.min(525, window.innerWidth * 0.95)}
+          len={Math.min(525, window.innerWidth * 0.55)}
           initDeg={22.5}
+        />
+        <SkillBox
+          skills={SKILLS_LIST.map((obj) => obj.url).splice(8, 8)}
+          len={Math.min(300, window.innerWidth * 0.3)}
+          initDeg={22.5}
+          isSpinCW={false}
         />
         <div className="glass skill-pill-center">
           <img
