@@ -1,0 +1,382 @@
+@import url("https://fonts.cdnfonts.com/css/pecita");
+
+html {
+  background: #000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gochi Hand", cursive;
+  color: white;
+}
+
+#root {
+  display: flex;
+  flex: 0;
+  width: 100vw;
+  /* min-width: 100vw; */
+  min-height: 100vh;
+  background: linear-gradient(180deg, #222121 0%, #060606 10%, #000000 100%);
+  justify-content: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1280px;
+  padding: 20px;
+  gap: 20px;
+}
+
+.header {
+  position: sticky;
+  top: 10px;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  border-radius: 40px;
+  padding: 15px 30px;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.glass {
+  background: rgba(82, 82, 82, 0.078);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(144, 144, 144, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-text {
+  color: transparent;
+  background: rgba(255, 255, 255, 0.078);
+  -webkit-text-stroke: 0.1px white; /* Outline width and color */
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25))
+    drop-shadow(0 2px 8px rgba(100, 150, 255, 0.15));
+}
+
+#logo-title {
+  font-size: 24px;
+  font-family: "Pecita", cursive;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    a {
+      text-decoration: none;
+      vertical-align: middle;
+    }
+    .divider {
+      height: 15px;
+      width: 1px;
+      background: white;
+    }
+  }
+}
+
+.social {
+  display: flex;
+  gap: 15px;
+  img {
+    width: 20px;
+    cursor: pointer;
+  }
+}
+
+.about {
+  display: flex;
+  width: 100%;
+  padding: 20px 30px;
+  align-items: center;
+  border-radius: 40px;
+  scroll-margin-top: 100px;
+  .about-info {
+    flex: 0.6;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+    * {
+      font-family: "Barlow Condensed", sans-serif;
+    }
+    .about-text2 {
+      width: fit-content;
+      max-width: 100%;
+      p {
+        color: transparent;
+        background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        font-weight: 600;
+        font-size: 60px;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .profile-img {
+    display: flex;
+    flex: 0.4;
+    justify-content: center;
+    img {
+      height: 600px;
+    }
+  }
+}
+
+.typewriter {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  border-right: 3px solid rgba(255, 255, 255, 0.8);
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(163, 162, 162, 0.8);
+  }
+}
+
+.glass-dark-pill {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    /* top inner highlight */ inset 0 -1px 0 rgba(0, 0, 0, 0.5); /* bottom inner shadow */
+}
+
+.skill-sec {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 40px;
+  overflow: hidden;
+  scroll-margin-top: 40px;
+  .skills {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 800px;
+    padding: 20px;
+  }
+  .skills-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: min(800px, 95vw);
+    aspect-ratio: 1;
+    border-radius: 800px;
+  }
+
+  .skill-pill {
+    position: absolute;
+    height: 90px;
+    width: 90px;
+    border-radius: 50px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 50px;
+      height: 50px;
+      animation: spin 50s linear infinite;
+    }
+  }
+  .skill-pill-center {
+    position: absolute;
+    height: 90px;
+    width: 90px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.spin-clock {
+  animation: spin 50s linear infinite;
+}
+
+.spin-anti-clock {
+  animation: spin 50s linear infinite reverse;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sec-title {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  padding: 10px 30px;
+  border-radius: 20px;
+  margin: 40px 0;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  p {
+    font-family: "Barlow Condensed", sans-serif;
+    text-transform: uppercase;
+    font-size: 100px;
+    line-height: 100px;
+    font-weight: 600;
+    color: #aaa;
+  }
+}
+
+.project-sec {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 40px;
+  overflow: hidden;
+  scroll-margin-top: 40px;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-wrap {
+  display: flex;
+  width: 80%;
+  padding: 20px 10px;
+  align-items: center;
+  margin-top: 60px;
+  .project-pic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0.4;
+    gap: 20px;
+    .project-name {
+      font-family: "Barlow Condensed", sans-serif;
+      text-transform: uppercase;
+      font-size: 28px;
+      line-height: 28px;
+      font-weight: 600;
+      color: #aaa;
+    }
+    img {
+      width: 70%;
+    }
+  }
+  .project-desc {
+    flex: 0.6;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 500;
+    text-align: justify;
+    padding: 0 50px;
+  }
+}
+
+.exp-sec {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 40px;
+  overflow: hidden;
+  scroll-margin-top: 40px;
+}
+
+.exps {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 20px;
+  gap: 20px;
+  position: relative;
+  .exp-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 0.5;
+    min-width: 48%;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 100px;
+    .exp-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 120px;
+      padding: 10px;
+      border-radius: 20px;
+      position: absolute;
+      top: -60px;
+      img {
+        height: 100%;
+      }
+    }
+    .exp-head {
+      display: flex;
+      margin-top: 80px;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 10px;
+      .exp-role {
+        font-size: 28px;
+      }
+    }
+
+    .exp-desc {
+      padding: 10px 20px;
+      text-align: justify;
+      * {
+        font-family: "Barlow Condensed", sans-serif;
+      }
+    }
+  }
+}
