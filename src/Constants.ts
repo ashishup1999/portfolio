@@ -130,4 +130,4 @@ export const SOCIAL_LINKS = {
 };
 
 export const RESUME_LINK =
-  "https://drive.google.com/file/d/1Me3q75eWUYd4T1QxPGv81Trxp0LcgayF/view?usp=drive_link";
+  "https://drive.google.com/file/d/1aysZdScgglMuWLdwENbnIoC-qT6hj4SL/view?usp=sharing";
