@@ -747,10 +747,6 @@
 .muted {
   color: var(--muted);
 }
-.brand-logo {
-  height: 34px;
-  width: auto;
-}
 .edu-card {
   display: flex;
   flex-direction: column;

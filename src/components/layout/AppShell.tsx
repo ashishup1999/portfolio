@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import avatar from "../../assets/avatar.png";
-import logo from "../../assets/logo.svg";
 import linkedin from "../../assets/linkedin.svg";
 import github from "../../assets/github.svg";
 import leetcode from "../../assets/leetcode.svg";
@@ -58,7 +57,6 @@ const Footer = () => (
     <div className="footer-inner">
       <div className="footer-brand">
         <NavLink to="/" className="brand" aria-label="Ashish Upadhyay, home">
-          <img src={logo} alt="" className="brand-logo" />
           <strong>Ashish Upadhyay</strong>
         </NavLink>
         <p className="foot-note">
