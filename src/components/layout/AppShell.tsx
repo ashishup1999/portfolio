@@ -131,10 +131,6 @@ const Footer = () => (
           Software engineer building full-stack products with an AI-native
           workflow. Based in Bengaluru.
         </p>
-        <span className="status-badge mono">
-          <i className="dot dot-cyan" />
-          Open to new roles
-        </span>
       </div>
       <nav className="footer-nav" aria-label="Footer">
         <span className="label">Explore</span>
