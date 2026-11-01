@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { usePageMeta } from "../components/layout/usePageMeta";
 import { Link } from "react-router-dom";
 import avatar from "../assets/avatar.png";
 import {
@@ -20,18 +21,19 @@ import {
 
 const PHILOSOPHY_COLORS = ["#a5a6ff", "#ff9a52", "#4cd7f6"];
 
-const AboutPage = () => (
+const AboutPage = () => {
+  usePageMeta("Ashish Upadhyay | Software Engineer");
+  return (
   <div className="page">
     <section className="hero">
       <div className="hero-copy">
         <span className="eyebrow mono">
           <i className="dot" />
-          AI-NATIVE FRONTEND &amp; FULL-STACK
+          Frontend &amp; full-stack engineer
         </span>
         <h1 className="h1">
-          Building Scalable <br />
-          <span className="grad-indigo">Products</span> with an{" "}
-          <span className="grad-orange">AI-Native</span> Workflow.
+          Building scalable products with an{" "}
+          <span className="grad-orange">AI-native</span> workflow.
         </h1>
         <p className="lead">
           {ABOUT_DETAILS.text1}
@@ -61,6 +63,7 @@ const AboutPage = () => (
     </section>
 
     <section className="now-row">
+      <h2 className="sr-only">Right now</h2>
       {NOW.map((n) => {
         const inner = (
           <>
@@ -78,6 +81,7 @@ const AboutPage = () => (
             rel="noreferrer"
           >
             {inner}
+            <span className="sr-only"> (opens in a new tab)</span>
             <span className="now-arrow" aria-hidden="true">
               &#8599;
             </span>
@@ -92,9 +96,9 @@ const AboutPage = () => (
 
     <section className="stack-gap">
       <SectionHeading
-        eyebrow="01 // APPROACH"
-        title="How I Build"
-        subtitle="AI-assisted speed, with engineering discipline."
+        eyebrow="How I work"
+        title="How I build"
+        subtitle="Fast with AI, careful in review."
       />
       <div className="grid-3">
         {PHILOSOPHY.map((p, i) => (
@@ -114,13 +118,13 @@ const AboutPage = () => (
     </section>
 
     <CodeWindow
-      title="ashish@portfolio:~/about"
-      meta="cat background.json"
+      title="a few notes about me"
+      meta="background.json"
       code={CODE_SNIPPET}
     />
 
     <section className="stack-gap">
-      <SectionHeading eyebrow="02 // EXPLORE" title="Find out more" />
+      <SectionHeading eyebrow="Look around" title="Find out more" />
       <div className="grid-3">
         {EXPLORE.map((e, i) => (
           <Link
@@ -149,11 +153,11 @@ const AboutPage = () => (
     </section>
 
     <CtaBanner
-      eyebrow="OPEN TO NEW ROLES"
+      eyebrow="Open to new roles"
       title="Let's build something"
       accent="together."
-      body="Full-stack and AI-native engineering roles, and product work where shipping end to end matters."
-      tags={["Full-stack", "AI-native engineering", "Frontend-leaning"]}
+      body="Full-stack and frontend-leaning roles, and product work where shipping end to end matters."
+      tags={["Full-stack", "Frontend-leaning", "Product-minded"]}
     >
       <Button href={SOCIAL_LINKS.linkedin}>Get in touch &rarr;</Button>
       <Button variant="ghost" to="/resume">
@@ -162,5 +166,6 @@ const AboutPage = () => (
     </CtaBanner>
   </div>
 );
+};
 
 export default AboutPage;

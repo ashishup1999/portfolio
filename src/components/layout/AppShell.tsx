@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import avatar from "../../assets/avatar.png";
 import linkedin from "../../assets/linkedin.svg";
@@ -15,9 +15,75 @@ const SOCIALS = [
 const Brand = () => (
   <NavLink to="/" className="brand" aria-label="Ashish Upadhyay, home">
     <strong>Ashish Upadhyay</strong>
-    <small className="mono">SOFTWARE DEVELOPER</small>
+    <small className="mono">Software developer</small>
   </NavLink>
 );
+
+type Theme = "light" | "dark";
+
+const THEME_COLORS: Record<Theme, string> = {
+  light: "#fdf6e3",
+  dark: "#002b36",
+};
+
+const ThemeToggle = () => {
+  const [theme, setTheme] = useState<Theme>(() =>
+    document.documentElement.dataset.theme === "dark" ? "dark" : "light",
+  );
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", THEME_COLORS[theme]);
+  }, [theme]);
+
+  const next = theme === "dark" ? "light" : "dark";
+  const choose = () => {
+    setTheme(next);
+    try {
+      // Only an explicit choice is saved, so the default can still change later.
+      localStorage.setItem("theme", next);
+    } catch {
+      // storage unavailable (private mode); the choice just won't persist
+    }
+  };
+  return (
+    <button
+      type="button"
+      className="theme-toggle"
+      onClick={choose}
+      aria-label={`Switch to ${next} mode`}
+      title={`Switch to ${next} mode`}
+    >
+      <svg
+        className="icon-moon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+      </svg>
+      <svg
+        className="icon-sun"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+      </svg>
+    </button>
+  );
+};
 
 const Header = () => (
   <header className="site-header">
@@ -43,7 +109,9 @@ const Header = () => (
           rel="noreferrer"
         >
           Let&apos;s Connect &rarr;
+          <span className="sr-only"> (opens in a new tab)</span>
         </a>
+        <ThemeToggle />
         <NavLink to="/resume" className="header-avatar" aria-label="Resume">
           <img src={avatar} alt="" />
         </NavLink>
@@ -64,8 +132,8 @@ const Footer = () => (
           workflow. Based in Bengaluru.
         </p>
         <span className="status-badge mono">
-          <i className="dot dot-cyan pulse" />
-          OPEN TO NEW ROLES
+          <i className="dot dot-cyan" />
+          Open to new roles
         </span>
       </div>
       <nav className="footer-nav" aria-label="Footer">
@@ -90,6 +158,7 @@ const Footer = () => (
               <img src={s.icon} alt="" width={16} height={16} />
             </span>
             {s.label}
+            <span className="sr-only"> (opens in a new tab)</span>
             <span className="social-arrow" aria-hidden="true">
               &#8599;
             </span>
@@ -136,8 +205,11 @@ const AppShell = () => {
 
   return (
     <>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <Header />
-      <main>
+      <main id="main">
         <Outlet />
       </main>
       <Footer />

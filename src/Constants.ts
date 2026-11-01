@@ -1,4 +1,4 @@
-export const YEARS_EXPERIENCE = "4.5";
+export const YEARS_EXPERIENCE = "4+";
 
 export const ABOUT_DETAILS = {
   text1: "Hi, I am Ashish Upadhyay, a ",
@@ -23,11 +23,14 @@ export const PROJECTS: {
   tag: string;
   category: ProjectCategory;
   status: "active" | "archived";
+  /** Month of the latest commit on GitHub, for projects without a live release. */
+  updated?: string;
   summary: string;
   highlight: string;
   features?: string[];
   techStack: string[];
   url?: string;
+  repos?: { label: string; href: string }[];
   resume?: string[];
 }[] = [
   {
@@ -36,35 +39,47 @@ export const PROJECTS: {
     category: "fullstack",
     status: "active",
     summary:
-      "An interactive platform for frontend interview preparation: a library of machine coding problems that you solve in an IDE-like workspace, right in the browser.",
+      "A self-hosted desktop app for practising front-end interview questions. A guided setup installs and starts everything through Docker, then opens a browser editor that builds and previews your code.",
     highlight:
-      "Actively in development, with DSA problems and peer code collaboration being added.",
+      "Free to run and private by design: nothing is uploaded, and your code, projects and progress stay on your computer.",
     features: [
-      "Instant coding sandbox with a virtual file system and live preview",
-      "A growing library of machine coding problems, from Todo lists and autocomplete to Kanban boards and chat interfaces",
-      "Filter by difficulty (Easy, Medium, Hard) and by topic such as state management, performance and accessibility",
-      "Solve in React or vanilla JavaScript, with ready-made boilerplates",
+      "Desktop installers for macOS (Apple silicon and Intel) and Windows, with a guided setup that checks for Docker and starts the app",
+      "Live previews that rebuild on save, with errors shown by file and line",
+      "Three containers: Postgres for storage and sign-in, an app service that builds and checks code, and a sandbox that serves previews",
+      "No account, cloud or tracking: learner code runs in locked-down containers, previews run in read-only ones, and you can export or delete your data from Settings",
     ],
-    techStack: ["Next.js", "React", "In-browser sandbox"],
+    techStack: ["Docker", "PostgreSQL", "Desktop app"],
     url: "https://elementstack.vercel.app/",
     resume: [
-      "Building an interactive frontend interview-prep platform with a growing library of machine coding problems.",
-      "IDE-like in-browser workspace with a virtual file system, live preview and React or vanilla JS boilerplates; problems filterable by difficulty and topic.",
+      "Built a self-hosted desktop app (macOS and Windows) for front-end interview practice, with a guided setup that checks for Docker and starts the app.",
+      "Built the browser editor with live previews on three containers (Postgres, app, sandbox); nothing is uploaded, and learner code runs in locked-down containers.",
     ],
   },
   {
-    name: "Code Editor (SaaS IDE)",
+    name: "Codekar",
     tag: "Full stack",
     category: "fullstack",
     status: "archived",
+    updated: "Dec 2025",
     summary:
-      "A browser-based IDE supporting JavaScript, Python, Go, C++ and Java, with a collaborative project platform that offers sequential handoffs and shared progress.",
+      "A browser-based code editor for JavaScript, Python, Go, C++ and Java. Users keep their work as playgrounds, whiteboards and web projects, look up other developers and send connection requests.",
     highlight:
-      "Handles 1K+ concurrent code executions, with secure containerised execution in Golang for isolated runtimes.",
-    techStack: ["Next.js", "Golang", "WebSocket", "PostgreSQL", "Docker"],
+      "A Go API (Gin, MongoDB) behind a Next.js client, running code through a per-language compile service with a 20 second timeout.",
+    features: [
+      "Monaco editor that compiles and runs JavaScript, Python, Go, C++ and Java on the server",
+      "Playgrounds and whiteboards: saved, named scratchpads with a separate code buffer per language, plus custom input and output",
+      "Web projects made of HTML, CSS and JavaScript, with a live preview",
+      "Explore page to search developers, projects, playgrounds and whiteboards, with profiles, profile photos and connection requests",
+    ],
+    techStack: ["Next.js", "TypeScript", "Monaco Editor", "Golang", "Gin", "MongoDB"],
+    url: "https://codekar-one.vercel.app",
+    repos: [
+      { label: "Client", href: "https://github.com/ashishup1999/codekar" },
+      { label: "Server", href: "https://github.com/ashishup1999/codekar-server" },
+    ],
     resume: [
-      "Built a browser-based IDE supporting JS, Python, Go, C++ and Java, handling 1K+ concurrent executions.",
-      "Developed a collaborative project platform with sequential handoffs and shared progress, with secure containerised execution in Golang.",
+      "Built a browser code editor that compiles and runs JS, Python, Go, C++ and Java through a Go API.",
+      "Added playgrounds, whiteboards, HTML/CSS/JS web projects with live preview, and a developer explore page with connection requests.",
     ],
   },
   {
@@ -72,44 +87,76 @@ export const PROJECTS: {
     tag: "Full stack",
     category: "fullstack",
     status: "archived",
+    updated: "Jul 2025",
     summary:
-      "A responsive web app for real-time 1-on-1 chat with friends, built on WebSockets for seamless live communication.",
+      "A real-time chat web app. People sign up with an avatar, search for each other to start a chat, and message live over Socket.IO.",
     highlight:
-      "OTP-based password recovery cut login issues by 25%, and WebSockets improved chat responsiveness by 30%.",
-    techStack: ["React", "Node.js", "MongoDB", "Docker"],
+      "Every chat is a Socket.IO room, and each message records when it was sent, delivered and seen.",
+    features: [
+      "Live messaging with sent, delivered and seen timestamps stored in MongoDB",
+      "Search for people to start a chat, an avatar picker at sign-up, and deleting selected messages",
+      "Password recovery with an emailed one-time code; passwords are stored AES-encrypted",
+      "React client and Express server, each with its own Dockerfile",
+    ],
+    techStack: ["React", "Node.js", "Express", "Socket.IO", "MongoDB", "Docker"],
+    repos: [
+      { label: "Client", href: "https://github.com/ashishup1999/samvad-client" },
+      { label: "Server", href: "https://github.com/ashishup1999/samvad-server" },
+    ],
   },
   {
     name: "Face Mask Detector",
     tag: "Computer vision",
     category: "ml",
     status: "archived",
+    updated: "Jun 2021",
     summary:
-      "A real-time computer vision system that monitors mask compliance with a two-stage deep learning pipeline in Python and PyTorch.",
+      "A webcam app that finds faces and labels each one Masked or Not masked, using a two-stage PyTorch pipeline.",
     highlight:
-      "MTCNN face localisation feeds a fine-tuned MobileNetV3 classifier, with OpenCV handling the live video stream.",
-    techStack: ["Python", "PyTorch", "OpenCV", "NumPy"],
+      "MTCNN detects the faces. A MobileNetV3-Large classifier with a frozen ImageNet backbone and a new one-neuron head, trained for 10 epochs, labels each crop.",
+    techStack: ["Python", "PyTorch", "MTCNN", "OpenCV"],
+    repos: [
+      {
+        label: "Source",
+        href: "https://github.com/ashishup1999/Face-Mask-Detector-for-COVID-pandemic",
+      },
+    ],
   },
   {
     name: "Twitter Sentiment Analysis",
     tag: "NLP",
     category: "ml",
     status: "archived",
+    updated: "Jun 2021",
     summary:
-      "An NLP model that classifies social media posts about climate change as supportive or opposed to the global warming narrative.",
+      "A Naive Bayes classifier trained on a global warming tweet dataset to predict whether a tweet says global warming exists (yes or no).",
     highlight:
-      "NLTK tokenisation and lemmatisation feed Scikit-Learn supervised models, with NumPy handling vectorisation.",
-    techStack: ["Python", "NLTK", "Scikit-Learn", "NumPy"],
+      "Tweets are cleaned, stripped of NLTK stopwords and Porter-stemmed, turned into a bag of up to 5,000 words, reduced to 5 components with PCA, then classified with Gaussian Naive Bayes.",
+    techStack: ["Python", "NLTK", "Scikit-Learn", "Pandas"],
+    repos: [
+      {
+        label: "Source",
+        href: "https://github.com/ashishup1999/NLP-on-twitter-sentiments",
+      },
+    ],
   },
   {
     name: "Neural Style Transfer",
     tag: "Creative AI",
     category: "ml",
     status: "archived",
+    updated: "Jun 2021",
     summary:
-      "A deep learning pipeline that applies the artistic style of one image to the content of another using convolutional feature representations.",
+      "Repaints one image in the style of another by optimising the output image directly against a pretrained VGG19 network.",
     highlight:
-      "Style and content are separated through CNN feature maps and recombined by gradient-based optimisation.",
-    techStack: ["Python", "PyTorch", "NumPy"],
+      "A content loss on a deep VGG19 layer plus a Gram-matrix style loss across five layers, minimised with Adam over 2,000 steps per run.",
+    techStack: ["Python", "PyTorch", "VGG19", "OpenCV"],
+    repos: [
+      {
+        label: "Source",
+        href: "https://github.com/ashishup1999/Neural-Style-Transfer-pytorch-",
+      },
+    ],
   },
 ];
 
@@ -134,7 +181,6 @@ export const AI_CLUSTERS: { title: string; note: string; skills: Skill[] }[] = [
       { label: "Spec-Driven Development" },
       { label: "Context Engineering" },
       { label: "Prompt Engineering" },
-      { label: "Graph Engineering" },
       { label: "Reviewing & Hardening AI Code" },
     ],
   },
@@ -268,17 +314,17 @@ export const NOW = [
   {
     label: "Currently",
     title: "Software Engineer II at Cvent",
-    note: "Shipping full-stack features with an AI-native workflow.",
+    note: "Shipping full-stack features end to end.",
   },
   {
     label: "Building",
     title: "Element Stack",
-    note: "An interactive frontend interview-prep platform.",
+    note: "A self-hosted desktop app for front-end interview practice.",
     href: "https://elementstack.vercel.app/",
   },
   {
     label: "Open to",
-    title: "Full-stack & AI-native roles",
+    title: "Full-stack roles",
     note: "Based in Bengaluru.",
   },
 ];
@@ -324,13 +370,13 @@ export const EDUCATION = {
   school: "Jabalpur Engineering College",
   degree: "B.Tech, Computer Science & Engineering",
   period: "Jun 2018 - Jul 2022",
-  gpa: "GPA 8.17",
+  gpa: "GPA 8.17 / 10",
 };
 
 export const CERTIFICATIONS = [
   "DeepLearning.AI: Deep Learning Specialization",
-  "CCD: Front End Foundations",
-  "CCD: Secure Developer",
+  "Cvent Certified Developer: Front End Foundations",
+  "Cvent Certified Developer: Secure Developer",
 ];
 
 export const Experiences: {
@@ -340,6 +386,7 @@ export const Experiences: {
   loc: string;
   company: string;
   color: string;
+  wideLogo?: boolean;
   summary: string;
   highlights: string[];
   tech: string[];
@@ -349,7 +396,8 @@ export const Experiences: {
   {
     img: "cvent",
     company: "Cvent",
-    color: "#009fdf",
+    color: "#01ef6c",
+    wideLogo: true,
     role: "Software Engineer II",
     loc: "Bengaluru",
     duration: "Feb 2026 - Present",
@@ -377,11 +425,11 @@ export const Experiences: {
       "Improved code quality with pre-push test checks, ESLint and TypeScript build cleanup, and Storybook and Prettier upgrades, and helped fix production issues and bug-bash findings.",
     ],
     resume: [
-      "Led a dashboard homepage epic through a full AI-assisted Research, Plan, Implement cycle: research and planning with Claude, API specs, then the backend APIs and frontend dashboards.",
-      "Moved from frontend developer to full-stack feature owner within eight months, building paginated and aggregated backend APIs and maintaining shared OpenAPI specs.",
-      "Used Claude Skills and agents to ship a lead-management feature end to end, backend and frontend.",
-      "Built BFF APIs for third-party integrations such as company enrichment, feature flagging and meeting booking, delivered ahead of schedule.",
-      "Improved code quality with pre-push test checks, lint and TypeScript build cleanup, and Storybook and Prettier upgrades; fixed production issues and led bug-bash fixes.",
+      "Led the dashboard homepage epic from start to finish: researched and planned it with Claude, wrote the API specs, then built the backend endpoints and the frontend dashboards.",
+      "Moved from frontend work to owning full-stack features within eight months. Built paginated and aggregated APIs and fixed schema clashes in the shared OpenAPI specs.",
+      "Shipped a lead-management feature end to end, using Claude Skills and agents for both the backend and the detail page.",
+      "Wrote BFF APIs for third-party integrations (company enrichment, feature flags, meeting booking) and delivered them ahead of schedule.",
+      "Added test checks to the pre-push hook, cleaned up lint and TypeScript build errors, upgraded Storybook and Prettier, and fixed production issues and bug-bash items.",
     ],
   },
   {
@@ -408,11 +456,11 @@ export const Experiences: {
       "Secured APIs with JWT authentication and encryption across the onboarding flows.",
     ],
     resume: [
-      "Developed and maintained five onboarding portals (NRI, Resident, Corporate, Fastag, Staff) serving over 10,000 daily users.",
-      "Designed the React-based NRI onboarding system and reduced account creation time with API batching, modular UI and caching strategies.",
-      "Integrated Video KYC, LDAP and secure authentication modules, improving the onboarding success rate.",
-      "Built a resident-to-NRI migration app in FlutterFlow, integrated with a React monorepo for cross-platform deployment.",
-      "Improved performance with lazy-loading, Lighthouse tuning and Gzip compression, and secured APIs with JWT authentication and encryption.",
+      "Built and maintained five onboarding portals (NRI, Resident, Corporate, Fastag and Staff) used by more than 10,000 people a day.",
+      "Designed the React-based NRI onboarding flow and cut account creation time with API batching, reusable components and caching.",
+      "Integrated Video KYC, LDAP and secure sign-in modules, which improved the onboarding success rate.",
+      "Built a resident-to-NRI migration app in FlutterFlow and wired it into the React monorepo.",
+      "Improved page speed with lazy loading, Lighthouse fixes and Gzip, and secured the APIs with JWT authentication and encryption.",
     ],
   },
   {
@@ -431,8 +479,8 @@ export const Experiences: {
       "Improved CI/CD pipelines and testing reliability within Agile sprints.",
     ],
     resume: [
-      "Optimised the performance of a Node.js enterprise platform through refined state handling and better component reusability.",
-      "Improved CI/CD pipelines and testing reliability within Agile sprints.",
+      "Sped up a Node.js enterprise platform by reworking state handling and reusing components.",
+      "Improved CI/CD pipelines and test reliability inside Agile sprints.",
     ],
   },
   {
@@ -452,7 +500,7 @@ export const Experiences: {
       "Leveraged rule-based NLP techniques to translate complex algorithmic solutions into peer-reviewed research, resulting in the co-authorship of a published academic paper.",
     ],
     resume: [
-      "Built a rule-based grammar correction system in Python and NLTK, including a verb-correction module, and co-authored a published academic paper.",
+      "Built a rule-based grammar correction system in Python with NLTK (over 90% accuracy on error detection and correction), including a verb-correction module at 94% precision, and co-authored a published paper.",
     ],
   },
 ];
@@ -473,14 +521,14 @@ const toResumeRole = (e: (typeof Experiences)[number]) => ({
 
 export const RESUME = {
   name: "Ashish Upadhyay",
-  title: "Software Engineer | AI-Native Frontend & Full-Stack",
+  title: "Software Engineer | Frontend & Full-Stack",
   location: "Bengaluru, India",
-  summary: `Software Engineer with ${YEARS_EXPERIENCE} years of experience, grown from frontend developer to full-stack feature owner. Leads features end to end with an AI-native workflow of research, planning, API specs, backend and frontend delivery, using Claude Code, Claude Skills, MCPs and agents. Pairs AI-assisted speed with engineering discipline: OpenAPI specs, review of every AI-generated change, and secure coding.`,
+  summary: `Software engineer with ${YEARS_EXPERIENCE} years of experience. Started on the frontend and now owns features across the stack, from the API spec to the UI. At Cvent, plans and builds with Claude Code, Claude Skills, MCP servers and agents, and reviews every generated change before it merges.`,
   skills: [
     {
       label: "AI-assisted development",
       items:
-        "Claude Code, Claude Skills, MCP integrations, AI agents and subagents, graph engineering, RPI (Research, Plan, Implement), spec-driven development, context and prompt engineering, reviewing and hardening AI-generated code",
+        "Claude Code, Claude Skills, MCP integrations, AI agents and subagents, RAG, RPI (Research, Plan, Implement), spec-driven development, context and prompt engineering, reviewing and hardening AI-generated code",
     },
     { label: "Languages", items: "JavaScript (ES6+), TypeScript, Go, Python" },
     {

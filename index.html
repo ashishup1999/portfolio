@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
@@ -24,7 +24,33 @@
       name="description"
       content="Ashish Upadhyay - Software Engineer building scalable full-stack web applications with React, Next.js, GraphQL and cloud infrastructure."
     />
-    <meta name="theme-color" content="#0a0e16" />
+    <meta name="theme-color" content="#002b36" />
+    <script>
+      // Dark is the default; a saved "light" choice overrides it. Applied before
+      // first paint to avoid a flash.
+      document.documentElement.dataset.theme = "dark";
+      try {
+        if (localStorage.getItem("theme") === "light") {
+          document.documentElement.dataset.theme = "light";
+        }
+      } catch (e) {}
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          document.documentElement.dataset.theme === "dark"
+            ? "#002b36"
+            : "#fdf6e3",
+        );
+    </script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ashish Upadhyay | Software Engineer" />
+    <meta
+      property="og:description"
+      content="Software Engineer building full-stack web products with React, Next.js, Node.js and GraphQL."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="author" content="Ashish Upadhyay" />
     <title>Ashish Upadhyay | Software Engineer</title>
   </head>
   <body>

@@ -1,4 +1,5 @@
 import { Button } from "../components/ui";
+import { usePageMeta } from "../components/layout/usePageMeta";
 import { RESUME, SOCIAL_LINKS } from "../Constants";
 
 type Role = (typeof RESUME.experience)[number];
@@ -21,13 +22,15 @@ const RoleBlock = ({ r }: { r: Role }) => (
   </div>
 );
 
-const ResumePage = () => (
+const ResumePage = () => {
+  usePageMeta("Resume | Ashish Upadhyay");
+  return (
   <div className="page">
     <section className="resume-head">
       <div className="resume-intro">
         <span className="eyebrow mono">
           <i className="dot" />
-          RESUME
+          Resume
         </span>
         <h1 className="h1 h1-md">
           My <span className="grad-indigo">resume</span>
@@ -133,5 +136,6 @@ const ResumePage = () => (
     </article>
   </div>
 );
+};
 
 export default ResumePage;
