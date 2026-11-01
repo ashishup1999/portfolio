@@ -9,12 +9,32 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: var(--r-pill);
+  background: var(--text);
+  color: var(--bg);
+}
+.skip-link:focus {
+  top: 12px;
+}
+
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -47,7 +67,19 @@ img {
 }
 
 .mono {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .page {
@@ -60,44 +92,43 @@ img {
   gap: var(--section-gap);
 }
 
-.grad-indigo {
-  background: linear-gradient(90deg, var(--indigo), var(--violet) 60%, var(--cyan));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.grad-indigo,
+.grad-orange {
+  white-space: nowrap;
+  color: inherit;
+  background: linear-gradient(var(--mark-bg), var(--mark-bg)) no-repeat 0 90% / 100% 0.4em;
+  padding: 0 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-.grad-orange {
-  background: linear-gradient(90deg, var(--peach), var(--orange) 50%, var(--violet));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.h1,
+.h2 {
+  text-wrap: balance;
 }
 
 .h1 {
-  font-size: clamp(36px, 5vw, 64px);
-  line-height: 1.08;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 4.2vw, 3.375rem);
+  line-height: 1.03;
+  font-weight: 500;
+  letter-spacing: -0.025em;
 }
 
 .h2 {
-  font-size: clamp(28px, 3.4vw, 40px);
-  line-height: 1.15;
-  font-weight: 800;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  line-height: 1.08;
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
 .lead {
   color: var(--muted);
-  font-size: 17px;
+  font-size: 1.125rem;
   max-width: 620px;
 }
 
 .label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.8125rem;
+  font-weight: 500;
   color: var(--subtle);
 }

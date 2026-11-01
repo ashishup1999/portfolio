@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { usePageMeta } from "../components/layout/usePageMeta";
 import { Button, Card, Chip, CtaBanner } from "../components/ui";
 import {
   CERTIFICATIONS,
@@ -53,12 +54,14 @@ const spanOf = (duration: string) => {
   return { start: start.trim(), length };
 };
 
-const ExperiencePage = () => (
+const ExperiencePage = () => {
+  usePageMeta("Experience | Ashish Upadhyay");
+  return (
   <div className="page">
     <section className="career-head">
       <span className="eyebrow mono">
         <i className="dot" />
-        CAREER
+        My career so far
       </span>
       <h1 className="h1 h1-md">
         From research intern to <span className="grad-indigo">full-stack</span>{" "}
@@ -89,7 +92,7 @@ const ExperiencePage = () => (
                 <img
                   src={logos[`../assets/exps/${exp.img}.svg`]}
                   alt=""
-                  className="path-logo"
+                  className={`path-logo${exp.wideLogo ? " path-logo-wide" : ""}`}
                 />
                 <span className="path-text">
                   <strong>{exp.company}</strong>
@@ -104,6 +107,7 @@ const ExperiencePage = () => (
     </section>
 
     <section className="timeline">
+      <h2 className="sr-only">Work history</h2>
       {Experiences.map((exp) => (
         <article
           key={exp.img}
@@ -111,7 +115,7 @@ const ExperiencePage = () => (
           className="role"
           style={{ "--brand": exp.color } as CSSProperties}
         >
-          <aside className="role-rail">
+          <div className="role-rail">
             {exp.duration.endsWith("Present") && (
               <Chip tone="orange">CURRENT ROLE</Chip>
             )}
@@ -120,13 +124,13 @@ const ExperiencePage = () => (
               {spanOf(exp.duration).length}
             </span>
             <span className="role-loc">{exp.loc}</span>
-          </aside>
+          </div>
           <Card className="exp-card">
             <header className="exp-head">
               <img
                 src={logos[`../assets/exps/${exp.img}.svg`]}
                 alt={`${exp.company} logo`}
-                className="exp-logo"
+                className={`exp-logo${exp.wideLogo ? " exp-logo-wide" : ""}`}
               />
               <div>
                 <h3>{exp.role}</h3>
@@ -157,6 +161,7 @@ const ExperiencePage = () => (
     </section>
 
     <section className="grid-2">
+      <h2 className="sr-only">Education and certifications</h2>
       <Card className="edu-card">
         <span className="label">Education</span>
         <h3>{EDUCATION.school}</h3>
@@ -178,7 +183,7 @@ const ExperiencePage = () => (
     </section>
 
     <CtaBanner
-      eyebrow="COLLABORATION"
+      eyebrow="Say hello"
       title="Need a high-velocity"
       accent="engineer?"
       body="Let's talk about full-stack products, performance work or ML-backed features."
@@ -187,5 +192,6 @@ const ExperiencePage = () => (
     </CtaBanner>
   </div>
 );
+};
 
 export default ExperiencePage;

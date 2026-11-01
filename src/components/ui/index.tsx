@@ -87,6 +87,7 @@ export const Button = ({
   return (
     <a className={cls} href={href} target="_blank" rel="noreferrer">
       {children}
+      <span className="sr-only"> (opens in a new tab)</span>
     </a>
   );
 };
@@ -110,7 +111,7 @@ export const CtaBanner = ({
     <div className="cta-copy">
       {eyebrow && (
         <span className="eyebrow">
-          <i className="dot pulse" />
+          <i className="dot" />
           {eyebrow}
         </span>
       )}
@@ -195,6 +196,13 @@ export const CodeWindow = ({
       <span className="mono code-title">{title}</span>
       {meta && <span className="mono code-meta">{meta}</span>}
     </div>
-    <pre className="mono code-body">{highlight(code)}</pre>
+    <pre
+      className="mono code-body"
+      tabIndex={0}
+      role="region"
+      aria-label={`Code sample: ${title}`}
+    >
+      {highlight(code)}
+    </pre>
   </div>
 );
