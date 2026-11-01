@@ -245,12 +245,6 @@
   font-size: 0.875rem;
   max-width: 340px;
 }
-.footer-brand .status-badge {
-  padding: 6px 12px;
-  border-radius: var(--r-pill);
-  background: color-mix(in srgb, var(--cyan) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--cyan) 35%, transparent);
-}
 .footer-nav,
 .footer-connect {
   display: flex;

@@ -184,8 +184,8 @@ const ExperiencePage = () => {
 
     <CtaBanner
       eyebrow="Say hello"
-      title="Need a high-velocity"
-      accent="engineer?"
+      title="Let's build something"
+      accent="together."
       body="Let's talk about full-stack products, performance work or ML-backed features."
     >
       <Button href={SOCIAL_LINKS.linkedin}>Get in touch &rarr;</Button>

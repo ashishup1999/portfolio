@@ -153,10 +153,10 @@ const AboutPage = () => {
     </section>
 
     <CtaBanner
-      eyebrow="Open to new roles"
+      eyebrow="Say hello"
       title="Let's build something"
       accent="together."
-      body="Full-stack and frontend-leaning roles, and product work where shipping end to end matters."
+      body="Happy to talk about full-stack products, performance work or ML-backed features."
       tags={["Full-stack", "Frontend-leaning", "Product-minded"]}
     >
       <Button href={SOCIAL_LINKS.linkedin}>Get in touch &rarr;</Button>
