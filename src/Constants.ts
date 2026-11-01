@@ -323,9 +323,9 @@ export const NOW = [
     href: "https://elementstack.vercel.app/",
   },
   {
-    label: "Open to",
-    title: "Full-stack roles",
-    note: "Based in Bengaluru.",
+    label: "Based in",
+    title: "Bengaluru, India",
+    note: "Working across frontend, backend and AI tooling.",
   },
 ];
 

@@ -174,9 +174,9 @@ const ProjectsPage = () => {
 
       <CtaBanner
         eyebrow="Let's talk"
-        title="Have an idea or a role in mind?"
+        title="Have an idea in mind?"
         accent="Let's build it."
-        body="I'm open to full-stack engineering roles and interesting product work."
+        body="Happy to talk about full-stack products, performance work or ML-backed features."
       >
         <Button href={SOCIAL_LINKS.linkedin}>Get in touch &rarr;</Button>
         <Button variant="ghost" to="/experience">
